@@ -33,21 +33,24 @@ sequelize.sync({ force: true }).then(async () => {
     await User.create({
       email: 'demo@lms.com',
       password: hashedPassword,
-      name: 'Demo Kullanıcı',
+      firstName: 'Demo',
+      lastName: 'Kullanıcı',
       role: 'instructor'
     });
 
     await User.create({
       email: 'admin@lms.com',
       password: hashedPassword,
-      name: 'Admin',
+      firstName: 'Admin',
+      lastName: 'User',
       role: 'admin'
     });
 
     await User.create({
       email: 'student@lms.com',
       password: hashedPassword,
-      name: 'Öğrenci Test',
+      firstName: 'Öğrenci',
+      lastName: 'Test',
       role: 'student'
     });
 
