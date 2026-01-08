@@ -14,6 +14,7 @@ export default function DashboardLayout({
 
     const menuItems = [
         { label: 'Derslerim', path: '/dashboard' },
+        { label: 'Sınavlarım', path: '/dashboard/exams' },
         { label: 'Soru Bankası', path: '/dashboard/question-bank' },
         { label: 'Not Defteri', path: '/dashboard/gradebook' },
         { label: 'Analitik', path: '/dashboard/analytics' },
