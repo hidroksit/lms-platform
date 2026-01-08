@@ -3,9 +3,7 @@ const router = express.Router();
 const examController = require('../controllers/examController');
 const jwt = require('jsonwebtoken');
 
-const sebMiddleware = require('../middleware/sebMiddleware');
-
-// Middleware to extract user from token for submission
+// Middleware to extract user from token
 const authenticate = (req, res, next) => {
     const token = req.headers.authorization?.split(' ')[1];
     if (!token) return res.status(401).json({ message: 'Unauthorized' });
@@ -17,14 +15,13 @@ const authenticate = (req, res, next) => {
     });
 };
 
-router.post('/', authenticate, examController.createExam);
+// Exam routes
 router.get('/', authenticate, examController.getAllExams);
-// SEB required to view specific exam details (to prevent questions leaking)
+router.post('/', authenticate, examController.createExam);
 router.get('/:id', authenticate, examController.getExamById);
-// SEB required to submit exam
-router.post('/submit', authenticate, sebMiddleware, examController.submitExam);
+router.post('/submit', authenticate, examController.submitExam);
 
-// SEB Config Export
+// SEB Config Export (optional)
 router.get('/:examId/seb-config', require('../controllers/sebController').getSEBConfig);
 
 module.exports = router;
