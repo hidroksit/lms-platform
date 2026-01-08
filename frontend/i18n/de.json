@@ -1,0 +1,87 @@
+{
+    "common": {
+        "welcome": "Willkommen",
+        "login": "Anmelden",
+        "logout": "Abmelden",
+        "profile": "Profil",
+        "settings": "Einstellungen",
+        "dashboard": "Dashboard",
+        "courses": "Kurse",
+        "exams": "Prüfungen",
+        "grades": "Noten",
+        "loading": "Laden...",
+        "error": "Fehler",
+        "success": "Erfolgreich",
+        "cancel": "Abbrechen",
+        "save": "Speichern",
+        "delete": "Löschen",
+        "edit": "Bearbeiten",
+        "create": "Erstellen",
+        "search": "Suchen",
+        "filter": "Filtern",
+        "all": "Alle",
+        "back": "Zurück",
+        "next": "Weiter",
+        "submit": "Absenden"
+    },
+    "auth": {
+        "email": "E-Mail",
+        "password": "Passwort",
+        "loginTitle": "Anmelden",
+        "loginButton": "Anmelden",
+        "loginError": "Anmeldung fehlgeschlagen",
+        "forgotPassword": "Passwort vergessen",
+        "register": "Registrieren"
+    },
+    "dashboard": {
+        "title": "LMS Studenten-Dashboard",
+        "myCourses": "Meine Kurse",
+        "upcomingExams": "Bevorstehende Prüfungen",
+        "recentActivity": "Letzte Aktivitäten",
+        "notifications": "Benachrichtigungen",
+        "questionBank": "Fragenbank"
+    },
+    "courses": {
+        "title": "Kurse",
+        "createCourse": "Kurs erstellen",
+        "courseTitle": "Kurstitel",
+        "courseDescription": "Kursbeschreibung",
+        "instructor": "Dozent",
+        "enrolledStudents": "Eingeschriebene Studenten",
+        "startDate": "Startdatum",
+        "endDate": "Enddatum",
+        "modules": "Module",
+        "content": "Inhalt"
+    },
+    "exams": {
+        "title": "Prüfungen",
+        "takeExam": "Prüfung ablegen",
+        "examTitle": "Prüfungstitel",
+        "duration": "Dauer",
+        "questions": "Fragen",
+        "submitExam": "Prüfung abgeben",
+        "timeRemaining": "Verbleibende Zeit",
+        "score": "Punktzahl",
+        "passed": "Bestanden",
+        "failed": "Nicht bestanden",
+        "proctored": "Beaufsichtigte Prüfung"
+    },
+    "profile": {
+        "title": "Profil",
+        "accountInfo": "Kontoinformationen",
+        "userId": "Benutzer-ID",
+        "role": "Rolle",
+        "student": "Student",
+        "instructor": "Dozent",
+        "admin": "Administrator"
+    },
+    "theme": {
+        "light": "Hell",
+        "dark": "Dunkel"
+    },
+    "language": {
+        "tr": "Türkçe",
+        "en": "English",
+        "de": "Deutsch"
+    }
+}

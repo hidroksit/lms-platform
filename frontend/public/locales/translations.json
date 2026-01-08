@@ -1,0 +1,128 @@
+{
+    "tr": {
+        "common": {
+            "login": "Giriş Yap",
+            "logout": "Çıkış",
+            "dashboard": "Panel",
+            "courses": "Dersler",
+            "exams": "Sınavlar",
+            "settings": "Ayarlar",
+            "profile": "Profil",
+            "save": "Kaydet",
+            "cancel": "İptal",
+            "delete": "Sil",
+            "edit": "Düzenle",
+            "create": "Oluştur",
+            "search": "Ara",
+            "loading": "Yükleniyor...",
+            "error": "Hata",
+            "success": "Başarılı"
+        },
+        "auth": {
+            "email": "E-posta",
+            "password": "Şifre",
+            "loginButton": "Giriş Yap",
+            "registerButton": "Kayıt Ol",
+            "forgotPassword": "Şifremi Unuttum"
+        },
+        "exam": {
+            "startExam": "Sınava Başla",
+            "submitExam": "Sınavı Bitir",
+            "timeRemaining": "Kalan Süre",
+            "question": "Soru",
+            "score": "Puan",
+            "passed": "Geçti",
+            "failed": "Kaldı"
+        },
+        "admin": {
+            "totalUsers": "Toplam Kullanıcı",
+            "totalCourses": "Toplam Ders",
+            "totalExams": "Toplam Sınav",
+            "averageScore": "Ortalama Puan"
+        }
+    },
+    "en": {
+        "common": {
+            "login": "Login",
+            "logout": "Logout",
+            "dashboard": "Dashboard",
+            "courses": "Courses",
+            "exams": "Exams",
+            "settings": "Settings",
+            "profile": "Profile",
+            "save": "Save",
+            "cancel": "Cancel",
+            "delete": "Delete",
+            "edit": "Edit",
+            "create": "Create",
+            "search": "Search",
+            "loading": "Loading...",
+            "error": "Error",
+            "success": "Success"
+        },
+        "auth": {
+            "email": "Email",
+            "password": "Password",
+            "loginButton": "Login",
+            "registerButton": "Register",
+            "forgotPassword": "Forgot Password"
+        },
+        "exam": {
+            "startExam": "Start Exam",
+            "submitExam": "Submit Exam",
+            "timeRemaining": "Time Remaining",
+            "question": "Question",
+            "score": "Score",
+            "passed": "Passed",
+            "failed": "Failed"
+        },
+        "admin": {
+            "totalUsers": "Total Users",
+            "totalCourses": "Total Courses",
+            "totalExams": "Total Exams",
+            "averageScore": "Average Score"
+        }
+    },
+    "de": {
+        "common": {
+            "login": "Anmelden",
+            "logout": "Abmelden",
+            "dashboard": "Dashboard",
+            "courses": "Kurse",
+            "exams": "Prüfungen",
+            "settings": "Einstellungen",
+            "profile": "Profil",
+            "save": "Speichern",
+            "cancel": "Abbrechen",
+            "delete": "Löschen",
+            "edit": "Bearbeiten",
+            "create": "Erstellen",
+            "search": "Suchen",
+            "loading": "Wird geladen...",
+            "error": "Fehler",
+            "success": "Erfolg"
+        },
+        "auth": {
+            "email": "E-Mail",
+            "password": "Passwort",
+            "loginButton": "Anmelden",
+            "registerButton": "Registrieren",
+            "forgotPassword": "Passwort vergessen"
+        },
+        "exam": {
+            "startExam": "Prüfung starten",
+            "submitExam": "Prüfung abgeben",
+            "timeRemaining": "Verbleibende Zeit",
+            "question": "Frage",
+            "score": "Punktzahl",
+            "passed": "Bestanden",
+            "failed": "Nicht bestanden"
+        },
+        "admin": {
+            "totalUsers": "Benutzer gesamt",
+            "totalCourses": "Kurse gesamt",
+            "totalExams": "Prüfungen gesamt",
+            "averageScore": "Durchschnittspunktzahl"
+        }
+    }
+}

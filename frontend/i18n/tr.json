@@ -1,0 +1,87 @@
+{
+    "common": {
+        "welcome": "Hoş Geldiniz",
+        "login": "Giriş Yap",
+        "logout": "Çıkış Yap",
+        "profile": "Profil",
+        "settings": "Ayarlar",
+        "dashboard": "Panel",
+        "courses": "Dersler",
+        "exams": "Sınavlar",
+        "grades": "Notlar",
+        "loading": "Yükleniyor...",
+        "error": "Hata",
+        "success": "Başarılı",
+        "cancel": "İptal",
+        "save": "Kaydet",
+        "delete": "Sil",
+        "edit": "Düzenle",
+        "create": "Oluştur",
+        "search": "Ara",
+        "filter": "Filtrele",
+        "all": "Tümü",
+        "back": "Geri",
+        "next": "İleri",
+        "submit": "Gönder"
+    },
+    "auth": {
+        "email": "E-posta",
+        "password": "Şifre",
+        "loginTitle": "Giriş Yap",
+        "loginButton": "Giriş Yap",
+        "loginError": "Giriş başarısız",
+        "forgotPassword": "Şifremi Unuttum",
+        "register": "Kayıt Ol"
+    },
+    "dashboard": {
+        "title": "LMS Öğrenci Paneli",
+        "myCourses": "Derslerim",
+        "upcomingExams": "Yaklaşan Sınavlar",
+        "recentActivity": "Son Aktiviteler",
+        "notifications": "Bildirimler",
+        "questionBank": "Soru Bankası"
+    },
+    "courses": {
+        "title": "Dersler",
+        "createCourse": "Ders Oluştur",
+        "courseTitle": "Ders Başlığı",
+        "courseDescription": "Ders Açıklaması",
+        "instructor": "Eğitmen",
+        "enrolledStudents": "Kayıtlı Öğrenciler",
+        "startDate": "Başlangıç Tarihi",
+        "endDate": "Bitiş Tarihi",
+        "modules": "Modüller",
+        "content": "İçerik"
+    },
+    "exams": {
+        "title": "Sınavlar",
+        "takeExam": "Sınava Gir",
+        "examTitle": "Sınav Başlığı",
+        "duration": "Süre",
+        "questions": "Sorular",
+        "submitExam": "Sınavı Bitir",
+        "timeRemaining": "Kalan Süre",
+        "score": "Puan",
+        "passed": "Geçti",
+        "failed": "Kaldı",
+        "proctored": "Gözetimli Sınav"
+    },
+    "profile": {
+        "title": "Profil",
+        "accountInfo": "Hesap Bilgileri",
+        "userId": "Kullanıcı ID",
+        "role": "Rol",
+        "student": "Öğrenci",
+        "instructor": "Eğitmen",
+        "admin": "Yönetici"
+    },
+    "theme": {
+        "light": "Açık",
+        "dark": "Koyu"
+    },
+    "language": {
+        "tr": "Türkçe",
+        "en": "English",
+        "de": "Deutsch"
+    }
+}

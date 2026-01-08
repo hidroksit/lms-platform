@@ -1,0 +1,87 @@
+{
+    "common": {
+        "welcome": "Welcome",
+        "login": "Login",
+        "logout": "Logout",
+        "profile": "Profile",
+        "settings": "Settings",
+        "dashboard": "Dashboard",
+        "courses": "Courses",
+        "exams": "Exams",
+        "grades": "Grades",
+        "loading": "Loading...",
+        "error": "Error",
+        "success": "Success",
+        "cancel": "Cancel",
+        "save": "Save",
+        "delete": "Delete",
+        "edit": "Edit",
+        "create": "Create",
+        "search": "Search",
+        "filter": "Filter",
+        "all": "All",
+        "back": "Back",
+        "next": "Next",
+        "submit": "Submit"
+    },
+    "auth": {
+        "email": "Email",
+        "password": "Password",
+        "loginTitle": "Login",
+        "loginButton": "Sign In",
+        "loginError": "Login failed",
+        "forgotPassword": "Forgot Password",
+        "register": "Register"
+    },
+    "dashboard": {
+        "title": "LMS Student Dashboard",
+        "myCourses": "My Courses",
+        "upcomingExams": "Upcoming Exams",
+        "recentActivity": "Recent Activity",
+        "notifications": "Notifications",
+        "questionBank": "Question Bank"
+    },
+    "courses": {
+        "title": "Courses",
+        "createCourse": "Create Course",
+        "courseTitle": "Course Title",
+        "courseDescription": "Course Description",
+        "instructor": "Instructor",
+        "enrolledStudents": "Enrolled Students",
+        "startDate": "Start Date",
+        "endDate": "End Date",
+        "modules": "Modules",
+        "content": "Content"
+    },
+    "exams": {
+        "title": "Exams",
+        "takeExam": "Take Exam",
+        "examTitle": "Exam Title",
+        "duration": "Duration",
+        "questions": "Questions",
+        "submitExam": "Submit Exam",
+        "timeRemaining": "Time Remaining",
+        "score": "Score",
+        "passed": "Passed",
+        "failed": "Failed",
+        "proctored": "Proctored Exam"
+    },
+    "profile": {
+        "title": "Profile",
+        "accountInfo": "Account Info",
+        "userId": "User ID",
+        "role": "Role",
+        "student": "Student",
+        "instructor": "Instructor",
+        "admin": "Admin"
+    },
+    "theme": {
+        "light": "Light",
+        "dark": "Dark"
+    },
+    "language": {
+        "tr": "Türkçe",
+        "en": "English",
+        "de": "Deutsch"
+    }
+}
