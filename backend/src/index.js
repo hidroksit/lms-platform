@@ -81,6 +81,10 @@ app.use('/api/access-control', require('./routes/accessControlRoutes'));
 app.use('/api/notifications', require('./routes/notificationRoutes'));
 app.use('/api/lti', require('./routes/ltiRoutes'));
 app.use('/api/h5p', require('./routes/h5pRoutes'));
+app.use('/api/proctoring', require('./routes/proctoringRoutes'));
+app.use('/api/rubrics', require('./routes/rubricRoutes'));
+app.use('/api/qti', require('./routes/qtiRoutes'));
+app.use('/api/roles', require('./routes/roleRoutes'));
 
 app.get('/api/health', async (req, res) => {
   try {
