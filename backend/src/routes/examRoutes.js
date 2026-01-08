@@ -18,9 +18,9 @@ const authenticate = (req, res, next) => {
 };
 
 router.post('/', authenticate, examController.createExam);
+router.get('/', authenticate, examController.getAllExams);
 // SEB required to view specific exam details (to prevent questions leaking)
 router.get('/:id', authenticate, examController.getExamById);
-router.get('/course/:courseId', examController.getExamsByCourse);
 // SEB required to submit exam
 router.post('/submit', authenticate, sebMiddleware, examController.submitExam);
 

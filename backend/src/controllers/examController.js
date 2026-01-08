@@ -19,6 +19,21 @@ exports.createExam = async (req, res) => {
     }
 };
 
+exports.getAllExams = async (req, res) => {
+    try {
+        const exams = await Exam.findAll({
+            include: [
+                { model: Course, attributes: ['id', 'title', 'code'] },
+                { model: Question, attributes: ['id'] }
+            ],
+            order: [['createdAt', 'DESC']]
+        });
+        res.json(exams);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};
+
 exports.getExamsByCourse = async (req, res) => {
     try {
         const exams = await Exam.findAll({
