@@ -1,10 +1,31 @@
 const { Sequelize } = require('sequelize');
 require('dotenv').config();
 
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
-    dialect: 'postgres',
-    logging: false,
-});
+let sequelize;
+let isDbConnected = false;
+
+// Check if DATABASE_URL is provided
+if (process.env.DATABASE_URL) {
+    sequelize = new Sequelize(process.env.DATABASE_URL, {
+        dialect: 'postgres',
+        logging: false,
+        dialectOptions: {
+            ssl: {
+                require: true,
+                rejectUnauthorized: false
+            }
+        }
+    });
+    isDbConnected = true;
+} else {
+    // Use SQLite in-memory for demo/development without external DB
+    sequelize = new Sequelize({
+        dialect: 'sqlite',
+        storage: ':memory:',
+        logging: false
+    });
+    console.log('⚠️  No DATABASE_URL found. Using in-memory SQLite database (demo mode).');
+}
 
 const User = require('./User')(sequelize);
 const Course = require('./Course')(sequelize);
@@ -27,7 +48,6 @@ Exam.hasMany(Question, { foreignKey: 'examId' });
 Question.belongsTo(Exam, { foreignKey: 'examId' });
 
 // User <-> ExamResult (Student)
-// This was the missing part causing the Admin Panel crash
 User.hasMany(ExamResult, { as: 'examResults', foreignKey: 'studentId' });
 ExamResult.belongsTo(User, { as: 'student', foreignKey: 'studentId' });
 
@@ -51,7 +71,8 @@ const db = {
     Question,
     ExamResult,
     Video,
-    PDFFile
+    PDFFile,
+    isDbConnected
 };
 
 module.exports = db;
