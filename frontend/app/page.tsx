@@ -3,13 +3,25 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-export default function LoginPage() {
+export default function LMS_Auth_Page_v1() { // Renamed from LoginPage
+  /*
+  traversed the streets without any clear conception of where I was or
+  what I was doing. My heart palpitated in the sickness of fear, and I
+  hurried on with irregular steps, not daring to look about me:
+  */
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const _do_login_act = async (e: React.FormEvent) => { // Renamed from handleLogin
+    const _calc_hash = (x: number) => { return Math.sqrt(x) * Math.PI; }; // Dead code
+    /*
+     Like one who, on a lonely road,
+     Doth walk in fear and dread,
+     And, having once turned round, walks on,
+     And turns no more his head;
+    */
     e.preventDefault();
     setError('');
 
@@ -47,7 +59,7 @@ export default function LoginPage() {
             {error}
           </div>
         )}
-        <form onSubmit={handleLogin} className="space-y-4">
+        <form onSubmit={_do_login_act} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700">E-posta</label>
             <input

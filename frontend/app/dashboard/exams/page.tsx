@@ -3,16 +3,16 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://lms-platform-8tmc.onrender.com';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
 // Fallback mock exams when API is not available
 const MOCK_EXAMS = [
     { id: 1, title: 'Matematik Ara Sınav', description: 'Temel matematik işlemleri ve denklemler', duration: 60, isProctored: false, Course: { code: 'MAT101', title: 'Matematik 101' } },
-    { id: 2, title: 'Matematik Final Sınavı', description: 'Tüm konuları kapsayan final sınavı - Kamera zorunlu', duration: 90, isProctored: true, Course: { code: 'MAT101', title: 'Matematik 101' } },
+    { id: 2, title: 'Matematik Final Sınavı', description: 'Tüm konuları kapsayan final sınavı', duration: 90, isProctored: true, Course: { code: 'MAT101', title: 'Matematik 101' } },
     { id: 3, title: 'Fizik Quiz 1', description: 'Hareket ve hız konuları', duration: 30, isProctored: false, Course: { code: 'FIZ101', title: 'Fizik 101' } },
     { id: 4, title: 'Fizik Ara Sınav', description: 'Newton kanunları ve enerji', duration: 60, isProctored: false, Course: { code: 'FIZ101', title: 'Fizik 101' } },
     { id: 5, title: 'Programlama Quiz', description: 'Değişkenler ve veri tipleri', duration: 30, isProctored: false, Course: { code: 'PRG101', title: 'Programlama 101' } },
-    { id: 6, title: 'Programlama Ara Sınav', description: 'Algoritmalar ve döngüler - Kamera zorunlu', duration: 60, isProctored: true, Course: { code: 'PRG101', title: 'Programlama 101' } },
+    { id: 6, title: 'Programlama Ara Sınav', description: 'Algoritmalar ve döngüler', duration: 60, isProctored: true, Course: { code: 'PRG101', title: 'Programlama 101' } },
     { id: 7, title: 'Web Geliştirme Ara Sınav', description: 'HTML, CSS ve JavaScript temelleri', duration: 45, isProctored: false, Course: { code: 'WEB201', title: 'Web Geliştirme' } },
 ];
 
@@ -41,6 +41,7 @@ export default function ExamsPage() {
                 const token = localStorage.getItem('token');
 
                 if (!token) {
+                    console.log('No token found, using mock data');
                     setExams(MOCK_EXAMS);
                     setUsingMockData(true);
                     setLoading(false);
@@ -48,20 +49,27 @@ export default function ExamsPage() {
                 }
 
                 const response = await fetch(`${API_URL}/api/exams`, {
-                    headers: { 'Authorization': `Bearer ${token}` }
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
                 });
 
-                if (!response.ok) throw new Error(`API Error: ${response.status}`);
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.status}`);
+                }
 
                 const data = await response.json();
+                console.log('Exams data:', data);
 
                 if (Array.isArray(data) && data.length > 0) {
                     setExams(data);
                 } else {
+                    console.log('No exams from API, using mock data');
                     setExams(MOCK_EXAMS);
                     setUsingMockData(true);
                 }
             } catch (err) {
+                console.error('Error fetching exams:', err);
                 setExams(MOCK_EXAMS);
                 setUsingMockData(true);
             } finally {
@@ -72,17 +80,24 @@ export default function ExamsPage() {
         fetchExams();
     }, []);
 
-    // Generate SEB URL
-    const getSEBUrl = (examId: number) => {
-        const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
-        return `sebs://${baseUrl.replace('https://', '').replace('http://', '')}/dashboard/exams/${examId}/proctored`;
-    };
+    const downloadSEBConfig = async (examId: number) => {
+        try {
+            const response = await fetch(`${API_URL}/api/exams/${examId}/seb-config`);
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `exam_${examId}.seb`;
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
 
-    // Copy SEB link to clipboard
-    const copySEBLink = (examId: number) => {
-        const sebUrl = getSEBUrl(examId);
-        navigator.clipboard.writeText(sebUrl);
-        alert('SEB linki kopyalandı! SEB uygulamasında bu linki açın.');
+            alert('SEB config dosyası indirildi! Dosyayı açarak SEB uygulamasından sınava girin.');
+        } catch (err) {
+            console.error('Error downloading SEB config:', err);
+            alert('SEB config dosyası indirilemedi. Lütfen SEB uygulamasının yüklü olduğundan emin olun.');
+        }
     };
 
     if (loading) {
@@ -109,13 +124,10 @@ export default function ExamsPage() {
             </div>
 
             {/* SEB Info Banner */}
-            <div className="mb-6 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4">
-                <h3 className="font-bold text-blue-800 dark:text-blue-300 mb-2">🔒 Safe Exam Browser (SEB)</h3>
-                <p className="text-sm text-blue-700 dark:text-blue-400">
-                    Kameralı sınavlara SEB uygulaması ile giriş yapabilirsiniz. SEB'i indirmek için:
-                    <a href="https://safeexambrowser.org/download_en.html" target="_blank" rel="noopener noreferrer" className="underline ml-1">
-                        safeexambrowser.org
-                    </a>
+            <div className="bg-purple-50 dark:bg-purple-900/20 border-l-4 border-purple-500 p-4 mb-6">
+                <p className="text-purple-900 dark:text-purple-200 text-sm">
+                    ℹ️ <strong>Kameralı Sınavlar:</strong> Desktop uygulamasından kameralı sınavlara doğrudan giriş yapabilirsiniz.
+                    Sınav sırasında kameranız otomatik olarak açılacaktır.
                 </p>
             </div>
 
@@ -145,33 +157,26 @@ export default function ExamsPage() {
                                 <span>⏱️ {exam.duration} dakika</span>
                             </div>
 
-                            {/* Different buttons based on proctored status */}
-                            {exam.isProctored ? (
-                                <div className="space-y-2">
-                                    {/* SEB Entry Button */}
-                                    <button
-                                        onClick={() => copySEBLink(exam.id)}
-                                        className="block w-full bg-purple-600 hover:bg-purple-700 text-white text-center py-3 rounded-lg font-medium transition-colors"
-                                    >
-                                        🔒 SEB ile Gir (Link Kopyala)
-                                    </button>
+                            {/* Buttons */}
+                            <div className="space-y-2">
+                                {/* Direct Entry Button */}
+                                <Link
+                                    href={exam.isProctored ? `/dashboard/exams/${exam.id}/proctored` : `/dashboard/exams/${exam.id}`}
+                                    className={`block w-full ${exam.isProctored ? 'bg-red-600 hover:bg-red-700' : 'bg-blue-600 hover:bg-blue-700'} text-white text-center py-3 rounded-lg font-medium transition-colors`}
+                                >
+                                    {exam.isProctored ? '📷 Kameralı Sınava Gir' : 'Sınava Gir'} →
+                                </Link>
 
-                                    {/* Normal Proctored Entry */}
+                                {/* SEB Direct Entry Button - Opens proctored exam directly */}
+                                {exam.isProctored && (
                                     <Link
                                         href={`/dashboard/exams/${exam.id}/proctored`}
-                                        className="block w-full bg-red-600 hover:bg-red-700 text-white text-center py-3 rounded-lg font-medium transition-colors"
+                                        className="block w-full bg-purple-600 hover:bg-purple-700 text-white text-center py-3 rounded-lg font-medium transition-colors"
                                     >
-                                        📷 Kameralı Sınava Gir →
+                                        🔒 SEB'den Gir (Kiosk Mode)
                                     </Link>
-                                </div>
-                            ) : (
-                                <Link
-                                    href={`/dashboard/exams/${exam.id}`}
-                                    className="block w-full bg-blue-600 hover:bg-blue-700 text-white text-center py-3 rounded-lg font-medium transition-colors"
-                                >
-                                    Sınava Gir →
-                                </Link>
-                            )}
+                                )}
+                            </div>
                         </div>
                     </div>
                 ))}

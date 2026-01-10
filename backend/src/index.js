@@ -328,6 +328,7 @@ app.use('/api/2fa', require('./routes/twoFactorRoutes'));
 app.use('/api/oauth', require('./routes/oauthRoutes'));
 app.use('/api/scorm', require('./routes/scormRoutes'));
 app.use('/api/optical-reader', require('./routes/opticalReaderRoutes'));
+app.use('/api/omr', require('./routes/omrRoutes'));  // OpenCV OMR Processing
 app.use('/api/access-control', require('./routes/accessControlRoutes'));
 app.use('/api/notifications', require('./routes/notificationRoutes'));
 app.use('/api/lti', require('./routes/ltiRoutes'));

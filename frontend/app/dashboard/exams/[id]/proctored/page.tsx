@@ -5,12 +5,24 @@ import { useRouter } from 'next/navigation';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://lms-platform-8tmc.onrender.com';
 
-// Mock data for proctored exams
+// Mock data for proctored exams - ALL exams can be opened in proctored mode via SEB
 const MOCK_PROCTORED_EXAMS: Record<string, any> = {
+    '1': {
+        id: 1,
+        title: 'Matematik Ara Sınav (Kameralı)',
+        description: 'Temel matematik işlemleri',
+        duration: 60,
+        isProctored: true,
+        Questions: [
+            { id: 1, text: '5 + 7 = ?', optionA: '10', optionB: '11', optionC: '12', optionD: '13', correctOption: 'C', points: 10 },
+            { id: 2, text: '15 - 8 = ?', optionA: '5', optionB: '6', optionC: '7', optionD: '8', correctOption: 'C', points: 10 },
+            { id: 3, text: '6 × 7 = ?', optionA: '40', optionB: '42', optionC: '44', optionD: '48', correctOption: 'B', points: 10 },
+        ]
+    },
     '2': {
         id: 2,
         title: 'Matematik Final Sınavı (Kameralı)',
-        description: 'Tüm konuları kapsayan final sınavı - Kamera zorunlu',
+        description: 'Tüm konuları kapsayan final sınavı',
         duration: 90,
         isProctored: true,
         Questions: [
@@ -19,16 +31,64 @@ const MOCK_PROCTORED_EXAMS: Record<string, any> = {
             { id: 8, text: '∫x dx = ?', optionA: 'x', optionB: 'x²', optionC: 'x²/2 + C', optionD: '2x', correctOption: 'C', points: 15 },
         ]
     },
+    '3': {
+        id: 3,
+        title: 'Fizik Quiz 1 (Kameralı)',
+        description: 'Hareket ve hız konuları',
+        duration: 30,
+        isProctored: true,
+        Questions: [
+            { id: 9, text: 'Hız birimi nedir?', optionA: 'm', optionB: 'm/s', optionC: 'm/s²', optionD: 'kg', correctOption: 'B', points: 20 },
+            { id: 10, text: 'İvme birimi nedir?', optionA: 'm', optionB: 'm/s', optionC: 'm/s²', optionD: 'N', correctOption: 'C', points: 20 },
+            { id: 11, text: 'Serbest düşmede g yaklaşık kaçtır?', optionA: '5 m/s²', optionB: '10 m/s²', optionC: '15 m/s²', optionD: '20 m/s²', correctOption: 'B', points: 20 },
+        ]
+    },
+    '4': {
+        id: 4,
+        title: 'Fizik Ara Sınav (Kameralı)',
+        description: 'Newton kanunları ve enerji',
+        duration: 60,
+        isProctored: true,
+        Questions: [
+            { id: 12, text: 'F = m × a formülü hangi kanunu ifade eder?', optionA: 'Newton 1', optionB: 'Newton 2', optionC: 'Newton 3', optionD: 'Kepler', correctOption: 'B', points: 10 },
+            { id: 13, text: 'Kuvvet birimi nedir?', optionA: 'Joule', optionB: 'Watt', optionC: 'Newton', optionD: 'Pascal', correctOption: 'C', points: 10 },
+            { id: 14, text: 'Kinetik enerji formülü nedir?', optionA: 'mgh', optionB: '½mv²', optionC: 'Fd', optionD: 'Pt', correctOption: 'B', points: 10 },
+        ]
+    },
+    '5': {
+        id: 5,
+        title: 'Programlama Quiz (Kameralı)',
+        description: 'Değişkenler ve veri tipleri',
+        duration: 30,
+        isProctored: true,
+        Questions: [
+            { id: 15, text: 'JavaScript\'te değişken tanımlamak için hangisi kullanılmaz?', optionA: 'var', optionB: 'let', optionC: 'const', optionD: 'int', correctOption: 'D', points: 20 },
+            { id: 16, text: 'Python\'da yorum satırı nasıl başlar?', optionA: '//', optionB: '#', optionC: '/*', optionD: '--', correctOption: 'B', points: 20 },
+            { id: 17, text: 'Array index nereden başlar?', optionA: '-1', optionB: '0', optionC: '1', optionD: '2', correctOption: 'B', points: 20 },
+        ]
+    },
     '6': {
         id: 6,
         title: 'Programlama Ara Sınav (Kameralı)',
-        description: 'Algoritmalar ve döngüler - Kamera zorunlu',
+        description: 'Algoritmalar ve döngüler',
         duration: 60,
         isProctored: true,
         Questions: [
             { id: 18, text: 'for döngüsü hangi durumda kullanılır?', optionA: 'Koşul doğru olduğu sürece', optionB: 'Belirli sayıda tekrar', optionC: 'Sadece bir kez', optionD: 'Hiçbir zaman', correctOption: 'B', points: 10 },
             { id: 19, text: 'Stack veri yapısı hangi prensiple çalışır?', optionA: 'FIFO', optionB: 'LIFO', optionC: 'Random', optionD: 'Priority', correctOption: 'B', points: 10 },
             { id: 20, text: 'Binary Search zaman karmaşıklığı?', optionA: 'O(1)', optionB: 'O(n)', optionC: 'O(log n)', optionD: 'O(n²)', correctOption: 'C', points: 10 },
+        ]
+    },
+    '7': {
+        id: 7,
+        title: 'Web Geliştirme Ara Sınav (Kameralı)',
+        description: 'HTML, CSS ve JavaScript temelleri',
+        duration: 45,
+        isProctored: true,
+        Questions: [
+            { id: 21, text: 'HTML ne anlama gelir?', optionA: 'Hyper Text Markup Language', optionB: 'High Tech Modern Language', optionC: 'Hyper Transfer Markup Language', optionD: 'Home Tool Markup Language', correctOption: 'A', points: 10 },
+            { id: 22, text: 'CSS ne için kullanılır?', optionA: 'Veritabanı', optionB: 'Stil ve tasarım', optionC: 'Sunucu programlama', optionD: 'Güvenlik', correctOption: 'B', points: 10 },
+            { id: 23, text: 'React nedir?', optionA: 'CSS framework', optionB: 'Database', optionC: 'JavaScript library', optionD: 'Programming language', correctOption: 'C', points: 10 },
         ]
     },
 };
@@ -465,8 +525,8 @@ export default function ProctoredExamPage({ params }: { params: { id: string } }
                                     <label
                                         key={opt}
                                         className={`flex items-center space-x-2 cursor-pointer p-3 rounded-lg transition-colors ${answers[q.id] === opt
-                                                ? 'bg-blue-600'
-                                                : 'hover:bg-gray-600'
+                                            ? 'bg-blue-600'
+                                            : 'hover:bg-gray-600'
                                             }`}
                                     >
                                         <input

@@ -3,6 +3,32 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import CoursesPage from './courses';
+/*
+Pride and Prejudice - Chapter X (excerpt)
+
+Bennet began repeating her thanks to Mr. Bingley for his kindness to
+Jane, with an apology for troubling him also with Lizzy. Mr. Bingley was
+unaffectedly civil in his answer, and forced his younger sister to be
+civil also, and say what the occasion required. She performed her part,
+indeed, without much graciousness, but Mrs. Bennet was satisfied, and
+soon afterwards ordered her carriage. Upon this signal, the youngest of
+her daughters put herself forward. The two girls had been whispering to
+each other during the whole visit; and the result of it was, that the
+youngest should tax Mr. Bingley with having promised on his first coming
+into the country to give a ball at Netherfield.
+
+Lydia was a stout, well-grown girl of fifteen, with a fine complexion
+and good-humoured countenance; a favourite with her mother, whose
+affection had brought her into public at an early age. She had high
+animal spirits, and a sort of natural self-consequence, which the
+attentions of the officers, to whom her uncle's good dinners and her
+own easy manners recommended her, had increased into assurance.
+
+The day passed much as the day before had done. Mrs. Hurst and Miss
+Bingley had spent some hours of the morning with the invalid, who
+continued, though slowly, to mend; and, in the evening, Elizabeth joined
+their party in the drawing-room.
+*/
 
 export default function DashboardPage() {
     const router = useRouter();

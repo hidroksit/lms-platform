@@ -19,8 +19,13 @@ function createWindow() {
         }
     });
 
-    // Load the Next.js app
-    mainWindow.loadURL('http://localhost:3000');
+    // Load the Next.js app (Localhost for development)
+    const frontendURL = process.env.FRONTEND_URL || 'http://localhost:3000';
+    try {
+        mainWindow.loadURL(frontendURL);
+    } catch (e) {
+        console.log('Error loading URL:', e);
+    }
 
     // Auto-updater events
     autoUpdater.on('update-available', () => {

@@ -3,9 +3,10 @@ exports.getSEBConfig = async (req, res) => {
     try {
         const examId = req.params.examId;
 
+        // SEB ile açılan tüm sınavlar kameralı (proctored) modda açılacak
         const sebConfig = {
             examId: examId,
-            startURL: `http://localhost:3000/dashboard/exams/${examId}`,
+            startURL: `http://localhost:3000/dashboard/exams/${examId}/proctored`,
             showTaskBar: false,
             showMenuBar: false,
             enableRightMouse: false,
@@ -16,7 +17,10 @@ exports.getSEBConfig = async (req, res) => {
                 "localhost:3000/*",
                 "localhost:3001/api/*"
             ],
-            blockedProcesses: ["chrome.exe", "firefox.exe", "msedge.exe"]
+            blockedProcesses: ["chrome.exe", "firefox.exe", "msedge.exe"],
+            enableMediaCapture: true,  // Kamera ve mikrofon erişimi
+            allowVideoCapture: true,
+            allowAudioCapture: true
         };
 
         res.setHeader('Content-Type', 'application/x-seb-config');
